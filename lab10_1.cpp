@@ -2,15 +2,31 @@
 #include<iomanip> //For using setw(), setprecision(), ...
 using namespace std;
 
-int main(){	
-	cout << "Enter initial loan: ";
+int main()
+{
+    int n;
+    n=1;
+    double initial=0;
+    double money=0;
+    double interest=0;
+    double interestrate=0;
+    double payment=0;
+    double total=0;
+    double newbalance=0;
+    cout << "Enter initial loan: ";
+    cin >> initial;
 	cout << "Enter interest rate per year (%): ";
+	cin >> interest;
 	cout << "Enter amount you can pay per year: ";
-
-	//use 'setw' to set width of table and 'left' to set left-alignment
-	//you can change input argument of 'setw()' to see the effect
-	//Try to change from 'left' to 'right' and see the effect
-	cout << setw(13) << left << "EndOfYear#"; 
+    cin >> payment;
+    
+    money= initial;
+    total=(((interest+100)/100)*money) ;
+    interestrate=(money*(interest/100)) ;
+    newbalance = (total-payment);
+    
+    
+    cout << setw(13) << left << "EndOfYear#"; 
 	cout << setw(13) << left << "PrevBalance"; 
 	cout << setw(13) << left << "Interest"; 
 	cout << setw(13) << left << "Total";
@@ -18,16 +34,53 @@ int main(){
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
 	
-	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
-	//you can change input argument of 'setprecision()' to see the effect
-	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
+	double x = payment;
+	if(x>total)
+	{
+	    x=total;
+	}
+	while(true){
+    
+	if(total<payment)
+	{
+	    payment=total;
+	    newbalance=0;
+	    cout << fixed << setprecision(2); 
+	cout << setw(13) << left << n; 
+	cout << setw(13) << left << money;
+	cout << setw(13) << left << interestrate;
+	cout << setw(13) << left << total;
+	cout << setw(13) << left << payment;
+	cout << setw(13) << left << newbalance;
+	cout << "\n";
 	
-	return 0;
+	n+=1;
+    newbalance = (total-payment);
+	    break;
+	}
+	cout << fixed << setprecision(2); 
+	cout << setw(13) << left << n; 
+	cout << setw(13) << left << money;
+	cout << setw(13) << left << interestrate;
+	cout << setw(13) << left << total;
+	cout << setw(13) << left << payment;
+	cout << setw(13) << left << newbalance;
+	cout << "\n";
+	
+	n+=1;
+	
+	money=newbalance;
+	 interestrate=(money*(interest/100)) ;
+    total=(((interest+100)/100)*money) ;
+   
+    newbalance = (total-payment);
+	if(money<0)
+	break;
+	}
+    
+    
+    
+    
+    
+    return 0;
 }
